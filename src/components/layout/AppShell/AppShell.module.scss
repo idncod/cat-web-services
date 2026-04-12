@@ -1,0 +1,32 @@
+.shell {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.main {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.topBar,
+.content {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding: 1.5rem;
+  }
+
+  .main {
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .shell {
+    padding: 2rem;
+  }
+}

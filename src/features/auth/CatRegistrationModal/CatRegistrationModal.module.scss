@@ -1,0 +1,109 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(114, 69, 96, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  width: min(100%, 540px);
+  border-radius: 28px;
+  border: 1px solid rgba(231, 163, 201, 0.48);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 28px 60px rgba(148, 79, 118, 0.18);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 1rem 1rem 0;
+}
+
+.eyebrow {
+  color: var(--color-brand-strong);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin-top: 0.2rem;
+  font-size: 1rem;
+}
+
+.closeButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(255, 246, 250, 0.96);
+  border: 1px solid rgba(231, 163, 201, 0.42);
+  cursor: pointer;
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.field span {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(231, 163, 201, 0.48);
+  border-radius: 16px;
+  padding: 0.8rem 0.9rem;
+  background: rgba(255, 249, 252, 0.98);
+  outline: 0;
+  font-size: 0.78rem;
+}
+
+.noteCard {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.9rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff0f7 0%, #ffe0ee 100%);
+  border: 1px solid rgba(231, 163, 201, 0.4);
+}
+
+.noteCard strong {
+  font-size: 0.76rem;
+}
+
+.noteCard p,
+.error {
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.noteCard p {
+  color: #6b4d62;
+}
+
+.error {
+  color: #ab4067;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}

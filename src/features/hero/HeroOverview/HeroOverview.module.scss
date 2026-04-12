@@ -1,0 +1,77 @@
+.hero {
+  display: grid;
+  gap: 1rem;
+}
+
+.copyColumn {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.lead {
+  max-width: 60ch;
+  color: var(--color-text-soft);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.ribbonRow {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ribbonCard {
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(231, 163, 201, 0.34);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 248, 252, 0.95) 0%, rgba(255, 241, 248, 0.95) 100%);
+}
+
+.ribbonCard span,
+.calloutLabel,
+.accountHint {
+  color: var(--color-text-soft);
+  font-size: 0.68rem;
+}
+
+.ribbonCard strong,
+.callout strong {
+  font-size: 0.9rem;
+}
+
+.callout {
+  display: grid;
+  gap: 0.28rem;
+  padding: 1rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.85), transparent 18%),
+    linear-gradient(135deg, #ffd6ea 0%, #ffc0df 100%);
+  border: 1px solid rgba(231, 163, 201, 0.45);
+}
+
+.callout p {
+  color: #6f4d65;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.accountHint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+
+@media (min-width: 860px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+    align-items: stretch;
+  }
+
+  .ribbonRow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

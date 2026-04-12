@@ -1,0 +1,88 @@
+.shell {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(234, 191, 216, 0.3);
+  background: #24141f;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.header span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 214, 233, 0.7);
+}
+
+.header strong {
+  margin-left: 0.45rem;
+  color: rgba(255, 231, 243, 0.92);
+  font-size: 0.73rem;
+}
+
+.terminalOutput {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 160px;
+  max-height: 230px;
+  overflow: auto;
+  padding: 0.9rem;
+}
+
+.line {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.lineOutput,
+.error {
+  color: rgba(255, 245, 251, 0.86);
+}
+
+.input {
+  color: #ffb8db;
+}
+
+.lineOutput {
+  color: rgba(255, 245, 251, 0.86);
+}
+
+.error {
+  color: #ff7fb2;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.prompt {
+  color: #ff92c7;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.72rem;
+}
+
+.inputRow input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: rgba(255, 245, 251, 0.92);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.72rem;
+}
+
+.inputRow input::placeholder {
+  color: rgba(255, 224, 238, 0.45);
+}

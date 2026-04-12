@@ -1,0 +1,14 @@
+.reviewBox {
+  padding: 1rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 94% 8%, rgba(255, 255, 255, 0.8), transparent 16%),
+    linear-gradient(135deg, #fff0f7 0%, #ffe0ee 100%);
+  border: 1px solid rgba(231, 163, 201, 0.4);
+}
+
+.reviewBox p {
+  color: #6a4b61;
+  font-size: 0.77rem;
+  line-height: 1.65;
+}

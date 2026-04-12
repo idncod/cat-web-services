@@ -1,0 +1,65 @@
+.panel {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(14, 24, 42, 0.96), rgba(9, 17, 31, 0.98));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(16px);
+}
+
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 20%);
+  pointer-events: none;
+}
+
+.header,
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.35rem 1.35rem 0;
+}
+
+.eyebrow {
+  color: var(--color-brand-strong);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 0.45rem;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.actions {
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 1.35rem;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .body {
+    padding: 1.5rem;
+  }
+}

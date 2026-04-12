@@ -1,0 +1,94 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, rgba(13, 23, 40, 0.96), rgba(9, 16, 28, 0.96));
+  box-shadow: var(--shadow-glow);
+}
+
+.brandBlock {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.95rem;
+  background: linear-gradient(135deg, rgba(111, 168, 255, 0.3), rgba(255, 180, 95, 0.18));
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+.brandName {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.brandTag {
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.nav {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.navItem {
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.navItem:hover {
+  transform: translateY(-1px);
+  border-color: rgba(111, 168, 255, 0.18);
+}
+
+.active {
+  border-color: rgba(111, 168, 255, 0.32);
+  background: linear-gradient(180deg, rgba(111, 168, 255, 0.12), rgba(255, 255, 255, 0.02));
+}
+
+.navHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.shortName {
+  color: var(--color-brand-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.navTitle {
+  margin-top: 0.7rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.navCopy {
+  margin-top: 0.35rem;
+  color: var(--color-text-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}

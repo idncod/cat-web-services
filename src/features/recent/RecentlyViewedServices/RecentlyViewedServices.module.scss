@@ -1,0 +1,43 @@
+.list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.78rem 0.84rem;
+  border-radius: 18px;
+  background: rgba(255, 248, 251, 0.96);
+  border: 1px solid rgba(231, 163, 201, 0.34);
+  cursor: pointer;
+}
+
+.active {
+  border-color: rgba(255, 126, 191, 0.72);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffe5f1 0%, #ffd0e5 100%);
+}
+
+.meta {
+  display: grid;
+  gap: 0.12rem;
+  text-align: left;
+}
+
+.meta strong {
+  font-size: 0.76rem;
+}
+
+.meta span {
+  color: var(--color-text-soft);
+  font-size: 0.68rem;
+}

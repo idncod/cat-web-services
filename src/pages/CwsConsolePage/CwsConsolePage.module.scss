@@ -1,0 +1,36 @@
+.layout {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.dashboardGrid {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.primaryColumn,
+.secondaryColumn {
+  display: grid;
+  gap: 0.95rem;
+  align-content: start;
+}
+
+.midGrid,
+.lowerGrid {
+  display: grid;
+  gap: 0.95rem;
+}
+
+@media (min-width: 960px) {
+  .midGrid,
+  .lowerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1180px) {
+  .dashboardGrid {
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.82fr);
+    align-items: start;
+  }
+}
