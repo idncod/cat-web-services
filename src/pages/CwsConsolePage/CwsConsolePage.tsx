@@ -8,15 +8,10 @@ import { HeroOverview } from '@/features/hero/HeroOverview/HeroOverview';
 import { HumanStatusCard } from '@/features/human/HumanStatusCard/HumanStatusCard';
 import { IncidentFeed } from '@/features/incidents/IncidentFeed/IncidentFeed';
 import { ViewerProfileModal } from '@/features/profile/ViewerProfileModal/ViewerProfileModal';
-import { RecentlyViewedServices } from '@/features/recent/RecentlyViewedServices/RecentlyViewedServices';
-import { ExecutiveReview } from '@/features/review/ExecutiveReview/ExecutiveReview';
-import { ServiceDetailPanel } from '@/features/services/ServiceDetailPanel/ServiceDetailPanel';
-import { ServiceGrid } from '@/features/services/ServiceGrid/ServiceGrid';
 import { ClawedShell } from '@/features/terminal/ClawedShell/ClawedShell';
-import { UsageSummary } from '@/features/usage/UsageSummary/UsageSummary';
 import type { ServiceKey, ViewerAccount } from '@/types/cws';
 import { fetchBreedAvatar } from '@/utils/catApi';
-import { generateExecutiveReview, runAction } from '@/utils/cwsEngine';
+import { runAction } from '@/utils/cwsEngine';
 import {
   clearViewerAccount,
   createViewerAccountNumber,
@@ -27,13 +22,11 @@ import {
 } from '@/utils/viewerAccount';
 import styles from './CwsConsolePage.module.scss';
 
-const initialReview = generateExecutiveReview(initialConsoleState);
 const defaultRecentKeys: ServiceKey[] = ['catops', 'clawedwatch', 'iam'];
 
 export const CwsConsolePage = () => {
   const [selectedServiceKey, setSelectedServiceKey] = useState<ServiceKey>('catops');
   const [consoleState, setConsoleState] = useState(initialConsoleState);
-  const [review, setReview] = useState(initialReview);
   const [searchValue, setSearchValue] = useState('');
   const [copied, setCopied] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
@@ -85,15 +78,7 @@ export const CwsConsolePage = () => {
   );
 
   const handleAction = (actionKey: (typeof actions)[number]['key']) => {
-    setConsoleState((currentState) => {
-      const nextState = runAction(currentState, actionKey);
-      setReview(generateExecutiveReview(nextState));
-      return nextState;
-    });
-  };
-
-  const handleGenerateReview = () => {
-    setReview(generateExecutiveReview(consoleState));
+    setConsoleState((currentState) => runAction(currentState, actionKey));
   };
 
   const handleCopyAccountNumber = async () => {
@@ -155,35 +140,20 @@ export const CwsConsolePage = () => {
                 onReturnHome={handleReturnHome}
             />
           }
-          bottomDock={<ClawedShell account={viewerAccount} selectedServiceKey={selectedServiceKey} recentKeys={recentKeys} />}
+          bottomDock={<ClawedShell account={viewerAccount} selectedServiceKey={selectedServiceKey}
+                                   recentKeys={recentKeys}/>}
       >
         <div className={styles.layout}>
-          <HeroOverview selectedService={selectedService} account={viewerAccount} />
+          <HeroOverview selectedService={selectedService} account={viewerAccount}/>
 
-          <div className={styles.contentGrid}>
-            <div className={styles.mainColumn}>
-              <ServiceGrid services={filteredServices} activeKey={selectedServiceKey} onSelect={setSelectedServiceKey} />
-
-              <div className={styles.twoUp}>
-                <UsageSummary usageSummary={consoleState.usageSummary} />
-                <RecentlyViewedServices
-                    services={services}
-                    activeKey={selectedServiceKey}
-                    recentKeys={recentKeys}
-                    onSelect={setSelectedServiceKey}
-                />
-              </div>
-
-              <div className={styles.twoUp}>
-                <ServiceDetailPanel service={selectedService} />
-                <HumanStatusCard humanStatus={consoleState.humanStatus} />
-              </div>
+          <div className={styles.homeGrid}>
+            <div className={styles.primaryColumn}>
+              <ActionCenter actions={actions} onAction={handleAction}/>
+              <HumanStatusCard humanStatus={consoleState.humanStatus}/>
             </div>
 
-            <div className={styles.sideColumn}>
-              <ActionCenter actions={actions} onAction={handleAction} />
-              <IncidentFeed incidents={consoleState.incidents} />
-              <ExecutiveReview review={review} onGenerate={handleGenerateReview} />
+            <div className={styles.secondaryColumn}>
+              <IncidentFeed incidents={consoleState.incidents}/>
             </div>
           </div>
         </div>

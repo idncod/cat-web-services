@@ -1,34 +1,29 @@
+@use '@/styles/tokens' as *;
+
 .layout {
   display: grid;
-  gap: 1rem;
+  gap: 16px;
+  padding-bottom: 112px;
 }
 
-.contentGrid {
+.homeGrid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  gap: 16px;
   align-items: start;
 }
 
-.mainColumn,
-.sideColumn {
+.primaryColumn {
   display: grid;
-  gap: 1rem;
-  align-content: start;
+  gap: 16px;
 }
 
-.twoUp {
-  display: grid;
-  gap: 1rem;
+.secondaryColumn {
+  min-height: 100%;
 }
 
-@media (min-width: 980px) {
-  .twoUp {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1220px) {
-  .contentGrid {
-    grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.85fr);
+@media (max-width: 1080px) {
+  .homeGrid {
+    grid-template-columns: 1fr;
   }
 }
