@@ -17,15 +17,15 @@ const platformStats = [
 export const HeroOverview = ({ selectedService, account }: HeroOverviewProps) => {
   return (
       <Panel title="One panel for your pink, premium cat cloud.">
-        <div className={styles.hero}>
+        <div className={styles.root}>
           <div className={styles.copyColumn}>
             <p className={styles.lead}>
-              Review household health, snack latency, and suspicious human behaviour from one very polished feline console.
+              Review household health, snack latency, and suspicious human behaviour from one polished feline console.
             </p>
 
-            <div className={styles.ribbonRow}>
+            <div className={styles.statsRow}>
               {platformStats.map((stat) => (
-                  <div key={stat.label} className={styles.ribbonCard}>
+                  <div key={stat.label} className={styles.statCard}>
                     <span>{stat.label}</span>
                     <strong>{stat.value}</strong>
                   </div>
@@ -33,16 +33,18 @@ export const HeroOverview = ({ selectedService, account }: HeroOverviewProps) =>
             </div>
           </div>
 
-          <div className={styles.callout}>
-            <ServiceLogo
-                serviceKey={selectedService.key}
-                serviceName={selectedService.name}
-                size="lg"
-            />
-            <span className={styles.calloutLabel}>Focused service</span>
-            <strong>{selectedService.name}</strong>
-            <p>{selectedService.tagline}</p>
-            <div className={styles.accountHint}>
+          <div className={styles.focusCard}>
+            <div className={styles.focusHeader}>
+              <ServiceLogo serviceKey={selectedService.key} serviceName={selectedService.name} size="md" />
+              <div className={styles.focusMeta}>
+                <span className={styles.focusLabel}>Focused service</span>
+                <strong>{selectedService.name}</strong>
+              </div>
+            </div>
+
+            <p className={styles.focusTagline}>{selectedService.tagline}</p>
+
+            <div className={styles.viewerMeta}>
               <span>{account ? `Viewer: ${account.displayName}` : 'Viewer: guest mode'}</span>
               <span>{account ? account.breedName : 'Sphynx sandbox'}</span>
             </div>
