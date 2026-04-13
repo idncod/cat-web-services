@@ -33,6 +33,11 @@ export const CwsConsolePage = () => {
   const [viewerAccount, setViewerAccount] = useState<ViewerAccount | null>(null);
   const [recentKeys, setRecentKeys] = useState<ServiceKey[]>(defaultRecentKeys);
 
+  const handleReturnHome = () => {
+    setSelectedServiceKey('catops');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     setViewerAccount(loadViewerAccount());
   }, []);
@@ -110,12 +115,15 @@ export const CwsConsolePage = () => {
     <AppShell
       topBar={
         <TopBar
-          searchValue={searchValue}
-          onSearchChange={setSearchValue}
-          account={viewerAccount}
-          onOpenRegistration={() => setRegistrationOpen(true)}
-          onCopyAccountNumber={handleCopyAccountNumber}
-          copied={copied}
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            account={viewerAccount}
+            onOpenRegistration={() => setRegistrationOpen(true)}
+            onCopyAccountNumber={handleCopyAccountNumber}
+            copied={copied}
+            activeServiceKey={selectedService?.key ?? null}
+            activeServiceName={selectedService?.name ?? null}
+            onReturnHome={handleReturnHome}
         />
       }
       bottomDock={<ClawedShell account={viewerAccount} selectedServiceKey={selectedServiceKey} recentKeys={recentKeys} />}

@@ -3,9 +3,9 @@
   margin: 0 auto;
   border: 1px solid rgba(232, 199, 216, 0.92);
   border-bottom: 0;
-  border-radius: 22px 22px 0 0;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 -14px 42px rgba(224, 171, 197, 0.2);
+  border-radius: 20px 20px 0 0;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 -14px 42px rgba(120, 79, 101, 0.14);
   overflow: hidden;
 }
 
@@ -13,42 +13,43 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   width: 100%;
-  min-height: 64px;
-  padding: 0.9rem 1rem;
+  min-height: 56px;
+  padding: 0.75rem 0.95rem;
   border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  background: linear-gradient(180deg, #fffdfd 0%, #fff4f9 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  background: linear-gradient(180deg, #fffefe 0%, #faf5f7 100%);
   cursor: ns-resize;
 }
 
 .dragBar {
-  width: 42px;
-  height: 5px;
+  width: 34px;
+  height: 4px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #ffc6e0 0%, #ff9bc9 100%);
+  background: linear-gradient(90deg, #e6bfd0 0%, #d993b6 100%);
 }
 
 .dragMeta {
   display: grid;
-  gap: 0.12rem;
+  gap: 0.1rem;
   text-align: left;
 }
 
 .dragMeta strong {
-  font-size: 0.79rem;
+  font-size: 0.74rem;
+  color: #34212d;
 }
 
 .dragMeta span,
 .promptBadge {
-  color: var(--color-text-soft);
-  font-size: 0.68rem;
+  color: #8f7886;
+  font-size: 0.66rem;
 }
 
 .promptBadge {
-  padding: 0.38rem 0.65rem;
-  border: 1px solid rgba(237, 204, 221, 0.88);
+  padding: 0.34rem 0.6rem;
+  border: 1px solid rgba(228, 212, 220, 0.9);
   border-radius: 999px;
   background: #fff;
 }
@@ -56,62 +57,83 @@
 .surface {
   display: grid;
   grid-template-rows: 1fr auto;
-  height: calc(100% - 64px);
-  background: linear-gradient(180deg, #2a1823 0%, #20111a 100%);
+  height: calc(100% - 56px);
+  background: linear-gradient(180deg, #24131d 0%, #1b0d15 100%);
 }
 
 .terminalOutput {
   display: grid;
   align-content: start;
-  gap: 0.35rem;
+  gap: 0.32rem;
   overflow: auto;
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 1rem 0.7rem;
 }
 
 .line {
+  margin: 0;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.output {
+  color: rgba(255, 240, 246, 0.88);
+}
+
+.input {
+  color: #ffb1cf;
+}
+
+.error {
+  color: #ff7fa9;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.75rem 1rem 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.prompt {
+  color: #ff9cc7;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.commandInput {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: rgba(255, 243, 248, 0.96) !important;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.72rem;
   line-height: 1.45;
 }
 
-.output {
-  color: rgba(255, 241, 247, 0.88);
+.commandInput::placeholder {
+  color: rgba(255, 220, 234, 0.34) !important;
 }
 
-.input {
-  color: #ffafcf;
-}
-
-.error {
-  color: #ff7ea9;
-}
-
-.inputRow {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.8rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.prompt {
-  color: #ff93c2;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.72rem;
-}
-
-.inputRow input {
-  flex: 1;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: rgba(255, 241, 247, 0.94);
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.72rem;
-}
-
-.inputRow input::placeholder {
-  color: rgba(255, 224, 238, 0.42);
+.commandInput:focus,
+.commandInput:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 @media (max-width: 900px) {
@@ -126,5 +148,10 @@
 
   .promptBadge {
     display: none;
+  }
+
+  .inputRow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }

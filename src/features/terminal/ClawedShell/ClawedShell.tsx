@@ -18,7 +18,9 @@ const seedLines = (account: ViewerAccount | null): ShellLine[] => [
   {
     id: 'line-2',
     type: 'output',
-    value: account ? `Authenticated as ${account.displayName} (${account.breedName})` : 'Guest mode active. Register a cat account for profile persistence.'
+    value: account
+        ? `Authenticated as ${account.displayName} (${account.breedName})`
+        : 'Guest mode active. Register a cat account for profile persistence.'
   },
   { id: 'line-3', type: 'output', value: 'Try: help, status, recent, whoami, purrr, clear' }
 ];
@@ -72,30 +74,54 @@ export const ClawedShell = ({ account, selectedServiceKey, recentKeys }: ClawedS
       return;
     }
 
-    const nextLines: ShellLine[] = [{ id: `input-${Date.now()}`, type: 'input', value: `${promptLabel} ${rawCommand}` }];
+    const nextLines: ShellLine[] = [
+      { id: `input-${Date.now()}`, type: 'input', value: `${promptLabel} ${rawCommand}` }
+    ];
 
     switch (value) {
       case 'help':
-        nextLines.push({ id: `out-${Date.now()}-1`, type: 'output', value: 'Commands: help, status, recent, whoami, purrr, clear' });
+        nextLines.push({
+          id: `out-${Date.now()}-1`,
+          type: 'output',
+          value: 'Commands: help, status, recent, whoami, purrr, clear'
+        });
         break;
       case 'status':
-        nextLines.push({ id: `out-${Date.now()}-2`, type: 'output', value: `Focused workload: ${selectedServiceKey}. Household health: mildly dramatic.` });
+        nextLines.push({
+          id: `out-${Date.now()}-2`,
+          type: 'output',
+          value: `Focused workload: ${selectedServiceKey}. Household health: mildly dramatic.`
+        });
         break;
       case 'recent':
-        nextLines.push({ id: `out-${Date.now()}-3`, type: 'output', value: `Recently viewed: ${recentKeys.join(', ')}` });
+        nextLines.push({
+          id: `out-${Date.now()}-3`,
+          type: 'output',
+          value: `Recently viewed: ${recentKeys.join(', ')}`
+        });
         break;
       case 'whoami':
         nextLines.push({
           id: `out-${Date.now()}-4`,
           type: 'output',
-          value: account ? `${account.displayName} (${account.breedName}) with account ${account.id}` : 'guest-human without a cat account'
+          value: account
+              ? `${account.displayName} (${account.breedName}) with account ${account.id}`
+              : 'guest-human without a cat account'
         });
         break;
       case 'purrr':
-        nextLines.push({ id: `out-${Date.now()}-5`, type: 'output', value: 'prrrrrrrrrrrrrrrr' });
+        nextLines.push({
+          id: `out-${Date.now()}-5`,
+          type: 'output',
+          value: 'prrrrrrrrrrrrrrrr'
+        });
         break;
       default:
-        nextLines.push({ id: `err-${Date.now()}`, type: 'error', value: `Unknown command: ${rawCommand}` });
+        nextLines.push({
+          id: `err-${Date.now()}`,
+          type: 'error',
+          value: `Unknown command: ${rawCommand}`
+        });
         break;
     }
 
@@ -104,43 +130,54 @@ export const ClawedShell = ({ account, selectedServiceKey, recentKeys }: ClawedS
   };
 
   return (
-    <section className={styles.dock} style={{ height }}>
-      <button
-        type="button"
-        className={styles.dragHandle}
-        onMouseDown={(event) => {
-          dragStateRef.current = { startY: event.clientY, startHeight: height };
-        }}
-        onDoubleClick={() => setHeight((current) => (current > collapsedHeight + 20 ? collapsedHeight : expandedHeight))}
-      >
-        <span className={styles.dragBar} />
-        <div className={styles.dragMeta}>
-          <strong>ClawedShell</strong>
-          <span>{isExpanded ? 'drag to resize' : 'double click to expand'}</span>
-        </div>
-        <span className={styles.promptBadge}>{promptLabel}</span>
-      </button>
-
-      <div className={styles.surface} data-expanded={isExpanded}>
-        <div className={styles.terminalOutput}>
-          {lines.map((line) => (
-            <p key={line.id} className={[styles.line, styles[line.type]].join(' ')}>
-              {line.value}
-            </p>
-          ))}
-        </div>
-
-        <form
-          className={styles.inputRow}
-          onSubmit={(event) => {
-            event.preventDefault();
-            runCommand(command);
-          }}
+      <section className={styles.dock} style={{ height }}>
+        <button
+            type="button"
+            className={styles.dragHandle}
+            onMouseDown={(event) => {
+              dragStateRef.current = { startY: event.clientY, startHeight: height };
+            }}
+            onDoubleClick={() =>
+                setHeight((current) => (current > collapsedHeight + 20 ? collapsedHeight : expandedHeight))
+            }
         >
-          <span className={styles.prompt}>{promptLabel}</span>
-          <input value={command} onChange={(event) => setCommand(event.target.value)} placeholder="type a command" />
-        </form>
-      </div>
-    </section>
+          <span className={styles.dragBar} />
+          <div className={styles.dragMeta}>
+            <strong>ClawedShell</strong>
+            <span>{isExpanded ? 'drag to resize' : 'double click to expand'}</span>
+          </div>
+          <span className={styles.promptBadge}>{promptLabel}</span>
+        </button>
+
+        <div className={styles.surface} data-expanded={isExpanded}>
+          <div className={styles.terminalOutput}>
+            {lines.map((line) => (
+                <p key={line.id} className={[styles.line, styles[line.type]].join(' ')}>
+                  {line.value}
+                </p>
+            ))}
+          </div>
+
+          <form
+              className={styles.inputRow}
+              onSubmit={(event) => {
+                event.preventDefault();
+                runCommand(command);
+              }}
+          >
+            <span className={styles.prompt}>{promptLabel}</span>
+            <input
+                className={styles.commandInput}
+                value={command}
+                onChange={(event) => setCommand(event.target.value)}
+                placeholder="type a command"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+            />
+          </form>
+        </div>
+      </section>
   );
 };

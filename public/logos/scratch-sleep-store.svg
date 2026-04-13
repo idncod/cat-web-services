@@ -1,0 +1,14 @@
+<svg width="128" height="128" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Scratch Sleep Store</title>
+  <g stroke="#7A2952" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 8l20 10v28L32 56 12 46V18L32 8Z"/>
+    <path d="M12 18l20 10 20-10"/>
+    <path d="M32 28v28"/>
+    <path d="M20 13l4-5 3 5"/>
+    <path d="M37 13l3-5 4 5"/>
+    <path d="M22 36l4 5"/>
+    <path d="M22 42l4 5"/>
+    <path d="M42 36l-4 5"/>
+    <path d="M42 42l-4 5"/>
+  </g>
+</svg>

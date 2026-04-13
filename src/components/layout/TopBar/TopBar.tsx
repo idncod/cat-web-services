@@ -1,97 +1,100 @@
-import { useMemo, useState } from 'react';
-import { DEFAULT_AVATAR_PATH } from '@/config/cats';
-import { AppButton } from '@/components/ui/AppButton/AppButton';
-import type { ViewerAccount } from '@/types/cws';
+import type { ChangeEvent } from 'react';
+import { Check, ChevronRight, Copy, Search, UserRound } from 'lucide-react';
+import { ServiceLogo } from '@/components/ui/ServiceLogo/ServiceLogo';
 import styles from './TopBar.module.scss';
 
-type TopBarProps = {
-  searchValue: string;
-  onSearchChange: (value: string) => void;
-  account: ViewerAccount | null;
-  onOpenRegistration: () => void;
-  onCopyAccountNumber: () => void;
-  copied: boolean;
+type ViewerAccountLike = {
+    id?: string;
+    displayName?: string;
+    avatarUrl?: string | null;
 };
 
-export const TopBar = ({
-  searchValue,
-  onSearchChange,
-  account,
-  onOpenRegistration,
-  onCopyAccountNumber,
-  copied
-}: TopBarProps) => {
-  const [avatarErrored, setAvatarErrored] = useState(false);
+export type TopBarProps = {
+    searchValue: string;
+    onSearchChange: (value: string) => void;
+    account: ViewerAccountLike | null;
+    onOpenRegistration: () => void;
+    onCopyAccountNumber: () => void | Promise<void>;
+    copied: boolean;
+    activeServiceKey?: string | null;
+    activeServiceName?: string | null;
+    onReturnHome: () => void;
+};
 
-  const avatarUrl = useMemo(() => {
-    if (account?.avatarUrl) {
-      return account.avatarUrl;
-    }
+export function TopBar({
+                           searchValue,
+                           onSearchChange,
+                           account,
+                           onOpenRegistration,
+                           onCopyAccountNumber,
+                           copied,
+                           activeServiceKey,
+                           activeServiceName,
+                           onReturnHome
+                       }: TopBarProps) {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        onSearchChange(event.target.value);
+    };
 
-    if (avatarErrored) {
-      return '';
-    }
+    const accountNumber = account?.id ?? 'CWS-418-000';
+    const avatarUrl = account?.avatarUrl || '/images/odd-eyed-sphynx-cat-in-gb.jpg';
+    const viewerName = account?.displayName ?? 'Guest cat';
+    const serviceTitle = activeServiceName ?? 'Console Overview';
 
-    return DEFAULT_AVATAR_PATH;
-  }, [account?.avatarUrl, avatarErrored]);
+    return (
+        <header className={styles.topBar}>
+            <button type="button" className={styles.brandButton} onClick={onReturnHome} aria-label="Return to CWS home">
+                <ServiceLogo
+                    serviceKey={activeServiceKey ?? 'home'}
+                    serviceName={activeServiceName ?? 'CWS Console'}
+                    size="md"
+                />
 
-  return (
-    <header className={styles.topBar}>
-      <div className={styles.brandBlock}>
-        <div className={styles.logoMark} aria-hidden="true">
-          <span>🐾</span>
-        </div>
-        <div className={styles.brandText}>
-          <p className={styles.product}>CWS</p>
-          <strong className={styles.title}>Cat Web Services</strong>
-          <span className={styles.subtitle}>Premium feline infrastructure</span>
-        </div>
-      </div>
-
-      <label className={styles.searchField}>
-        <span className={styles.searchIcon} aria-hidden="true">
-          🔎
+                <span className={styles.brandMeta}>
+          <span className={styles.brandLine}>
+            <span className={styles.brandRoot}>CWS</span>
+              {activeServiceKey ? <ChevronRight size={12} strokeWidth={2.2} /> : null}
+              <span className={styles.brandSection}>{serviceTitle}</span>
+          </span>
         </span>
-        <input
-          type="search"
-          value={searchValue}
-          onChange={(event) => onSearchChange(event.target.value)}
-          placeholder="Search services"
-          aria-label="Search services"
-        />
-      </label>
+            </button>
 
-      {account ? (
-        <button type="button" className={styles.accountChip} onClick={onCopyAccountNumber}>
-          <div className={styles.accountMeta}>
-            <span className={styles.accountLabel}>Account number</span>
-            <strong>{account.id}</strong>
-          </div>
-          <span className={styles.copyState}>{copied ? 'Copied' : 'Copy'}</span>
-        </button>
-      ) : (
-        <AppButton variant="secondary" onClick={onOpenRegistration}>
-          Register account
-        </AppButton>
-      )}
+            <div className={styles.searchWrap}>
+                <Search size={15} strokeWidth={2.1} className={styles.searchIcon} />
+                <input
+                    className={styles.searchInput}
+                    type="text"
+                    placeholder="Search services"
+                    value={searchValue}
+                    onChange={handleChange}
+                />
+            </div>
 
-      <button type="button" className={styles.profileChip} onClick={onOpenRegistration}>
-        <div className={styles.avatarWrap}>
-          {avatarUrl ? (
-            <img
-              src={avatarUrl}
-              alt={account ? `${account.displayName} avatar` : 'Sphynx cat avatar'}
-              onError={() => setAvatarErrored(true)}
-            />
-          ) : (
-            <span className={styles.avatarFallback}>🐱</span>
-          )}
-        </div>
-        <div className={styles.profileText}>
-          <span>{account ? account.displayName : 'Guest review mode'}</span>
-          <strong>{account ? account.breedName : 'Odd-eyed Sphynx'}</strong>
-        </div>
-      </button>
-    </header>
-  );
-};
+            <div className={styles.actions}>
+                <button type="button" className={styles.accountChip} onClick={onCopyAccountNumber}>
+                    <span className={styles.accountHead}>Account</span>
+                    <strong className={styles.accountNumber}>{accountNumber}</strong>
+                    <span className={styles.copyState}>
+            {copied ? <Check size={13} strokeWidth={2.2} /> : <Copy size={13} strokeWidth={2.2} />}
+                        {copied ? 'Copied' : 'Copy'}
+          </span>
+                </button>
+
+                <button type="button" className={styles.profileChip} onClick={onOpenRegistration}>
+          <span className={styles.avatarWrap}>
+            <img className={styles.avatar} src={avatarUrl} alt={viewerName} />
+          </span>
+
+                    <span className={styles.profileMeta}>
+            <strong>{viewerName}</strong>
+            <span>{account ? 'Viewer sandbox' : 'Register account'}</span>
+          </span>
+
+                    <span className={styles.profileIcon}>
+            <UserRound size={14} strokeWidth={2.1} />
+          </span>
+                </button>
+            </div>
+        </header>
+    );
+}

@@ -1,4 +1,5 @@
 import { Panel } from '@/components/ui/Panel/Panel';
+import { ServiceLogo } from '@/components/ui/ServiceLogo/ServiceLogo';
 import { StatusBadge } from '@/components/ui/StatusBadge/StatusBadge';
 import type { ServiceDefinition } from '@/types/cws';
 import styles from './ServiceDetailPanel.module.scss';
@@ -50,26 +51,31 @@ export const ServiceDetailPanel = ({ service }: ServiceDetailPanelProps) => {
   const content = serviceConfig[service.key];
 
   return (
-    <Panel
-      eyebrow="Selected service"
-      title={service.name}
-      actions={<StatusBadge label={service.status} tone={toneMap[service.status]} />}
-    >
-      <div className={styles.stack}>
-        <p className={styles.copy}>{content.line1}</p>
-        <p className={styles.copy}>{content.line2}</p>
+      <Panel
+          eyebrow="Selected service"
+          title={service.name}
+          actions={
+            <div className={styles.panelActions}>
+              <ServiceLogo serviceKey={service.key} serviceName={service.name} size="sm" />
+              <StatusBadge label={service.status} tone={toneMap[service.status]} />
+            </div>
+          }
+      >
+        <div className={styles.stack}>
+          <p className={styles.copy}>{content.line1}</p>
+          <p className={styles.copy}>{content.line2}</p>
 
-        <div className={styles.metricBlock}>
-          <span>{service.usageLabel}</span>
-          <strong>{service.usageValue}</strong>
+          <div className={styles.metricBlock}>
+            <span>{service.usageLabel}</span>
+            <strong>{service.usageValue}</strong>
+          </div>
+
+          <ul className={styles.list}>
+            {content.permissions.map((entry) => (
+                <li key={entry}>{entry}</li>
+            ))}
+          </ul>
         </div>
-
-        <ul className={styles.list}>
-          {content.permissions.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </div>
-    </Panel>
+      </Panel>
   );
 };

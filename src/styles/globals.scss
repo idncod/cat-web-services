@@ -1,7 +1,7 @@
 @use './tokens' as *;
 
 html {
-  font-size: 15px;
+  font-size: 14px;
   background: $color-bg;
 }
 
@@ -10,9 +10,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-          radial-gradient(circle at top right, rgba(255, 214, 233, 0.55), transparent 22%),
-          radial-gradient(circle at top left, rgba(255, 235, 244, 0.9), transparent 28%),
-          linear-gradient(180deg, #fffafc 0%, #fff7fb 45%, #fff3f8 100%);
+          radial-gradient(circle at top right, rgba(245, 219, 231, 0.32), transparent 24%),
+          linear-gradient(180deg, #fcfbfc 0%, #f9f7f8 100%);
   color: $color-text;
   font-family:
           Inter,
@@ -58,7 +57,7 @@ img {
 }
 
 ::selection {
-  background: rgba(243, 92, 168, 0.18);
+  background: rgba(216, 90, 151, 0.14);
   color: $color-text;
 }
 
@@ -89,7 +88,7 @@ h6 {
 p {
   margin: 0;
   color: $color-text-soft;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 input,
@@ -110,8 +109,8 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: $color-brand;
-  box-shadow: 0 0 0 4px rgba(243, 92, 168, 0.1);
-  background: #fffdfd;
+  box-shadow: 0 0 0 3px rgba(216, 90, 151, 0.08);
+  background: #fff;
 }
 
 button:focus-visible,
@@ -120,23 +119,23 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: 0;
-  box-shadow: 0 0 0 4px rgba(243, 92, 168, 0.12);
+  box-shadow: 0 0 0 3px rgba(216, 90, 151, 0.09);
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 221, 236, 0.5);
+  background: #f5eef1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(226, 144, 187, 0.75);
+  background: #d3bcc8;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(217, 60, 140, 0.78);
+  background: #b999ab;
 }

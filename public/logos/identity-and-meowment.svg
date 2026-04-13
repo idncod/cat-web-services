@@ -1,0 +1,13 @@
+<svg width="128" height="128" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Identity and Meowment</title>
+  <g stroke="#7A2952" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 10l18 6v12c0 11-7.5 19.5-18 24-10.5-4.5-18-13-18-24V16l18-6Z"/>
+    <path d="M24 24l4-6 4 6"/>
+    <path d="M36 24l4-6 4 6"/>
+    <path d="M27 31h.01"/>
+    <path d="M37 31h.01"/>
+    <path d="M29.5 36c1.2 1.2 3.8 1.2 5 0"/>
+    <path d="M32 36v6"/>
+    <path d="M27 42h10"/>
+  </g>
+</svg>

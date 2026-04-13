@@ -46,3 +46,9 @@
   left: 0;
   color: var(--color-brand-strong);
 }
+
+.panelActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
